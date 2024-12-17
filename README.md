@@ -27,6 +27,17 @@ docker build -t roon-connect .
 docker run -d roon-connect
 ```
 
+或者：
+
+docker run -d \
+  --name roon-streamer \
+  --network host \
+  -e PORT=3012 \
+  --restart unless-stopped \
+  epochaudio/roon-streamer:latest
+
+
+
 ### 连接到 Roon
 
 1. 打开 Roon
