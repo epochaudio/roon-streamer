@@ -26,7 +26,8 @@ docker build -t roon-connect .
 docker run -d roon-connect
 ```
 
-```docker run -d \
+```
+docker run -d \
   --name roon-streamer \
   --network host \
   -e PORT=3012 \
