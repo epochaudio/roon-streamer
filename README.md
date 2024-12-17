@@ -1,31 +1,60 @@
-Roon Connect 流媒体示例
-==
+# Roon Connect 流媒体播放器
 
-这是一个 Roon 扩展应用，主要用途：
-- 在 Roon 中收听在线中文广播
-- 支持播放自定义流媒体链接
-- 内置长三角地区精选高质量电台，包括：
-  - 上海 FM101.7 经典音乐广播
-  - 江苏音乐广播
-  - 苏州音乐广播
+![Roon Ready](https://roonlabs.com/images/logo-roon-partner-ready-black.png)
 
-## 快速开始指南
+## 简介
 
-### 运行示例
+Roon Connect 流媒体播放器是一个专业的 Roon 扩展应用，让您能够在 Roon 音频系统中轻松播放在线流媒体内容。
 
-使用 Docker Compose 运行:
+### 主要功能
 
-```sh
+- 🎵 支持在线流媒体播放
+- 🌐 自定义流媒体链接支持
+- 📻 内置精选中文电台
+- 🎨 优雅的用户界面
+- 🔄 无缝集成 Roon
+
+### 内置电台
+
+精选长三角地区高品质电台：
+
+- 上海 FM101.7 经典音乐广播
+- 江苏音乐广播
+- 苏州音乐广播
+
+## 系统要求
+
+- Docker 环境
+- Roon Core (版本 1.8 或更高)
+- 网络连接
+
+## 安装指南
+
+### 方式一：使用 Docker Compose（推荐）
+
+```bash
+# 克隆仓库
+git clone https://github.com/your-repo/roon-streamer.git
+cd roon-streamer
+
+# 启动服务
 docker-compose up -d
 ```
 
-或者使用 Docker 直接构建运行:
+### 方式二：使用 Docker 手动构建
 
-```sh
+```bash
+# 构建镜像
 docker build -t roon-connect .
-docker run -d roon-connect
+
+# 运行容器
+docker run -d \
+  --network host \
+  --name roon-streamer \
+  roon-connect
 ```
 
+###  方法三：
 ```
 docker run -d \
   --name roon-streamer \
@@ -36,20 +65,64 @@ docker run -d \
 ```
 
 
-### 连接到 Roon
+## 配置说明
 
-1. 打开 Roon
-2. 在 Roon 中，进入 设置 > 扩展
-3. 你应该能看到这个扩展。点击 "Epoch Audio Connect Stream" 旁边的 `启用` 按钮来启用它
-4. 点击 `设置` 按钮（在原来 `启用` 按钮的位置），选择你想要此示例进行流媒体传输的音频输出
-5. 返回 Roon 主页，确保 Roon 在底部栏中选择了该音频输出。当你开始播放音频时，这将有助于查看状态
+### Roon 设置
+
+1. 启动 Roon Core
+2. 导航至：设置 > 扩展
+3. 找到并启用 "Epoch Audio Connect Stream"
+4. 点击设置图标，配置音频输出设备
+5. 确保 Roon 底部控制栏已选择正确的输出设备
 
 ### 使用方法
 
- 
+#### Web 界面
 
-1. 浏览器登录：IP:3012， 登录控制页面
-2. 你可以输入 http://strm112.1.fm/dubstep_mobile_mp3⁠ 并按回车。开始流媒体传输/缓冲需要几秒钟时间，之后你应该能听到 Roon 播放这个流，并在底部栏看到你的播放状
+访问 `http://localhost:3012` 使用 Web 界面：
+
+- 选择预设电台
+- 输入自定义流媒体链接
+- 控制播放和音量
+
+#### 命令行界面
+
+也可以通过命令行控制：
+
+```bash
+# 播放流媒体
+curl -X POST http://localhost:3012/play \
+  -H "Content-Type: application/json" \
+  -d '{"url":"http://your-stream-url","stationName":"电台名称"}'
+
+# 停止播放
+curl -X POST http://localhost:3012/stop
+```
+
+## 故障排除
+
+1. 确保 Roon Core 正在运行且可访问
+2. 检查网络连接是否正常
+3. 验证端口 3012 是否被占用
+4. 查看 Docker 日志：`docker logs roon-streamer`
+
+## 技术支持
+
+- 官方网站：http://www.epochaudio.cn
+- 邮件支持：sales@epochaudio.cn
+
+## 许可证
+
+本项目采用 Apache 2.0 许可证。详情请参阅 [LICENSE](LICENSE) 文件。
+
+---
+由[门耳朵制作](http://www.epochaudio.cn)开发和维护
+  
+
+
+
+
+
 
 ![image](https://github.com/user-attachments/assets/7bab78a9-c402-4908-9a59-64b1fc1ecb9a)
 
