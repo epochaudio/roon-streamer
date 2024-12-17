@@ -7,6 +7,7 @@ Roon Connect 流媒体示例
 - 内置长三角地区精选高质量电台，包括：
   - 上海 FM101.7 经典音乐广播
   - 江苏音乐广播
+  - 浙江音乐广播
   - 苏州音乐广播
 
 ## 快速开始指南
@@ -26,19 +27,6 @@ docker build -t roon-connect .
 docker run -d roon-connect
 ```
 
-或者：
-
-```
-docker run -d \
-  --name roon-streamer \
-  --network host \
-  -e PORT=3012 \
-  --restart unless-stopped \
-  epochaudio/roon-streamer:latest
-```
-
-
-
 ### 连接到 Roon
 
 1. 打开 Roon
@@ -49,11 +37,8 @@ docker run -d \
 
 ### 使用方法
 
+在运行示例的控制台中：
 
-1. 浏览器登录：IP:3012， 登录控制页面
-2. 你可以输入 `http://strm112.1.fm/dubstep_mobile_mp3` 并按回车。开始流媒体传输/缓冲需要几秒钟时间，之后你应该能听到 Roon 播放这个流，并在底部栏看到你的播放状态
-
-
-![image](https://github.com/user-attachments/assets/6bfa4be4-50dd-4d71-8bf0-d1456e7b5129)
-
+1. 按几次回车键以确保你能看到提示符
+2. 你可以输入 `play http://strm112.1.fm/dubstep_mobile_mp3` 并按回车。开始流媒体传输/缓冲需要几秒钟时间，之后你应该能听到 Roon 播放这个流，并在底部栏看到你的播放状态
   

@@ -2,8 +2,12 @@ version: '3.8'
 
 services:
   roon-streamer:
-    build: .
-    image: roon-streamer
+    build:
+      context: .
+      args:
+        BUILDKIT_CONTEXT_KEEP_GIT_DIR: 0
+        DOCKER_BUILDKIT: 0
+    image: epochaudio/roon-streamer:latest
     container_name: roon-streamer
     network_mode: "host"
     environment:
