@@ -31,7 +31,7 @@ docker run -d roon-connect
 
 1. 打开 Roon
 2. 在 Roon 中，进入 设置 > 扩展
-3. 你应该能看到这个扩展。点击 "Roon Connect Stream Example" 旁边的 `启用` 按钮来启用它
+3. 你应该能看到这个扩展。点击 "Epoch Audio Connect Stream" 旁边的 `启用` 按钮来启用它
 4. 点击 `设置` 按钮（在原来 `启用` 按钮的位置），选择你想要此示例进行流媒体传输的音频输出
 5. 返回 Roon 主页，确保 Roon 在底部栏中选择了该音频输出。当你开始播放音频时，这将有助于查看状态
 
