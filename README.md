@@ -51,6 +51,7 @@ docker run -d \
 1. 浏览器登录：IP:3012， 登录控制页面
 2. 你可以输入 http://strm112.1.fm/dubstep_mobile_mp3⁠ 并按回车。开始流媒体传输/缓冲需要几秒钟时间，之后你应该能听到 Roon 播放这个流，并在底部栏看到你的播放状
 
+![image](https://github.com/user-attachments/assets/7bab78a9-c402-4908-9a59-64b1fc1ecb9a)
 
 
 ![image](https://github.com/user-attachments/assets/40b62a11-49de-4450-afde-4335bece5925)
