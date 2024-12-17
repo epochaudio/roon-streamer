@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  roon-streamer:
+    build: .
+    image: roon-streamer
+    container_name: roon-streamer
+    network_mode: "host"
+    environment:
+      - PORT=3012
+    restart: unless-stopped 

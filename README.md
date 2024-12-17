@@ -1,43 +1,44 @@
-Roon Connect Stream Example
+Roon Connect 流媒体示例
 ==
 
+这是一个 Roon 扩展应用，主要用途：
+- 在 Roon 中收听在线中文广播
+- 支持播放自定义流媒体链接
+- 内置长三角地区精选高质量电台，包括：
+  - 上海 FM101.7 经典音乐广播
+  - 江苏音乐广播
+  - 浙江音乐广播
+  - 苏州音乐广播
 
-## Quick start guide
+## 快速开始指南
 
-### Running this sample
+### 运行示例
+
+使用 Docker Compose 运行:
 
 ```sh
-npm install
-node ./test.mjs
+docker-compose up -d
 ```
 
-### Getting it connected to Roon
+或者使用 Docker 直接构建运行:
 
-1. Open Roon
-2. In Roon, go to Settings > Extensions
-3. This extension should be listed. Enable it by hitting the `Enable` button next to the "Roon Connect Stream Example".
-4. Hit the `Settings` button (it's where the `Enable` button used to be located), and select the audio output you want this example to stream to.
-5. Go back to Home in Roon make sure Roon has that audio output selected in the bottom bar. This will be useful to see stuff when you start playing audio.
+```sh
+docker build -t roon-connect .
+docker run -d roon-connect
+```
 
+### 连接到 Roon
 
-### Using it
+1. 打开 Roon
+2. 在 Roon 中，进入 设置 > 扩展
+3. 你应该能看到这个扩展。点击 "Roon Connect Stream Example" 旁边的 `启用` 按钮来启用它
+4. 点击 `设置` 按钮（在原来 `启用` 按钮的位置），选择你想要此示例进行流媒体传输的音频输出
+5. 返回 Roon 主页，确保 Roon 在底部栏中选择了该音频输出。当你开始播放音频时，这将有助于查看状态
 
-Back in the console where you ran this sample:
+### 使用方法
 
-1. Hit enter a few times to ensure you see the prompt.
-2. You can type `play http://strm112.1.fm/dubstep_mobile_mp3` and hit enter. It will take a few seconds to start streaming/buffering, but you should hear Roon playing this stream and see your brand taking over the bottom bar.
-3. You can type `help` for more commands.
+在运行示例的控制台中：
 
-## Turning this into something real
-
-You will want to modify `test.mjs` and change the following stuff at a minimum:
-
-1) the stuff passed in to `re.init()`
-2) the stuff passed to `re.play()`
-3) You may want to modify the settings logic in `lib.mjs` -- Roon extensions can export settings UI that can be set up in Roon, making configuring this program easier.
-4) Normally, the extension will save all state and configuration options to a `config.json` in the directory where it was started. You will need to override RoonApi.prototype.save_config/load_config if you want to change this behavior.
-   
-You will probably want to modify the following:
-
-3) `const logger =`
-4) remove all the interactive prompt stuff
+1. 按几次回车键以确保你能看到提示符
+2. 你可以输入 `play http://strm112.1.fm/dubstep_mobile_mp3` 并按回车。开始流媒体传输/缓冲需要几秒钟时间，之后你应该能听到 Roon 播放这个流，并在底部栏看到你的播放状态
+  

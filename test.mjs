@@ -33,12 +33,12 @@ const roon = re.init({
         logger: logger,
         enableProtocolTrace: false,
         extensionOptions: {
-            extension_id:        'com.roonlabs.roon_connect_stream_example',
-            display_name:        'Roon Connect Stream Example',
+            extension_id:        'com.EpochAudio.connect_stream',
+            display_name:        'Epoch Audio Connect Stream',
             display_version:     "1.0.0",
-            publisher:           'Roon Labs, LLC',
-            email:               'contact@roonlabs.com',
-            website:             'https://github.com/RoonLabs/roon-connect-stream-example',
+            publisher:           '门耳朵制作',
+            email:               'sales@epochaudio.cn',
+            website:             'http://www.epochaudio.cn',
         },
 });
 
@@ -65,8 +65,8 @@ while (true) {
             re.play({
                     url: url,
                     name: "My Brand",
-                    line1: "Streaming from the Roon Connect Steram Example",
-                    icon: "http://dev.roonlabs.com/public/puppy.png",
+                    line1: "来自门耳朵的中文在线广播",
+                    icon: "/image/qrcode_for_gh_75032b7b381b_344-300x300.jpg",
             });
 
     } else if (argv[0] == "vol") {

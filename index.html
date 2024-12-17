@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中文在线广播播放器</title>
+    <link rel="icon" href="image/icon.jpg" type="image/jpeg">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        .input-group {
+            margin-bottom: 30px;
+        }
+        input[type="url"], input[type="number"] {
+            padding: 12px;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            background-color: #f8f9fa;
+        }
+        input[type="url"] {
+            width: 100%;
+        }
+        input[type="number"] {
+            width: 80px;
+        }
+        .button-group {
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .play-btn {
+            background-color: #3498db;
+            color: white;
+            width: 100%;
+        }
+        .play-btn:hover {
+            background-color: #2980b9;
+        }
+        .stop-btn {
+            background-color: #e74c3c;
+            color: white;
+        }
+        .stop-btn:hover {
+            background-color: #c0392b;
+        }
+        .volume-btn {
+            background-color: #2ecc71;
+            color: white;
+        }
+        .volume-btn:hover {
+            background-color: #27ae60;
+        }
+        #status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .control-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        h2 {
+            color: #34495e;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+        .quick-play {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e1e4e8;
+        }
+        .quick-play a {
+            color: #3498db;
+            text-decoration: none;
+            display: block;
+            padding: 12px;
+            margin: 5px 0;
+            background: white;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            border: 1px solid #e1e4e8;
+        }
+        .quick-play a:hover {
+            color: #2980b9;
+            background: #f8f9fa;
+            transform: translateX(5px);
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            .quick-play a {
+                padding: 15px;
+                font-size: 15px;
+            }
+            .button-group {
+                flex-direction: column;
+            }
+            .button-group button {
+                width: 100%;
+            }
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 14px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .qrcode-section {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .qrcode-section img {
+            max-width: 200px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        .qrcode-section a {
+            color: #3498db;
+            text-decoration: none;
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>中文在线广播播放器</h1>
+        
+        <!-- 快捷播放链接 -->
+        <div class="quick-play">
+            <h2>快捷播放</h2>
+            <a href="#" onclick="playQuickStream('https://lhttp.qingting.fm/live/267/64k.mp3'); return false;">
+                上海经典音乐广播FM94.7
+            </a>
+            <a href="#" onclick="playQuickStream('https://lhttp.qingting.fm/live/2803/64k.mp3'); return false;">
+                苏州音乐广播FM102.8
+            </a>
+            <a href="#" onclick="playQuickStream('https://lhttp.qingting.fm/live/273/64k.mp3'); return false;">
+                上海Love Radio广播FM103.7
+            </a>
+            <a href="#" onclick="playQuickStream('https://lhttp.qingting.fm/live/274/64k.mp3'); return false;">
+                上海动感101 FM101.7
+            </a>
+            <a href="#" onclick="playQuickStream('https://lhttp.qingting.fm/live/5022023/64k.mp3'); return false;">
+                上海爱乐数字音乐广播FM981
+            </a>
+            <a href="#" onclick="playQuickStream('https://lhttp.qingting.fm/live/4936/64k.mp3'); return false;">
+                江苏音乐广播魅力897
+            </a>
+            <a href="#" onclick="playQuickStream('https://lhttp.qingting.fm/live/4936/64k.mp3'); return false;">
+                南京音乐广播FM105.8
+            </a>
+            <a href="#" onclick="playQuickStream('https://lhttp.qingting.fm/live/276/64k.mp3'); return false;">
+                上海第一财经广播FM90.9
+            </a>
+            <a href="#" onclick="playQuickStream('https://lhttp.qingting.fm/live/268/64k.mp3'); return false;">
+                上海故事广播FM107.2
+            </a>
+        </div>
+
+        <!-- 播放控制 -->
+        <div class="input-group">
+            <input type="url" id="streamUrl" placeholder="请输入流媒体URL" required>
+            <button class="play-btn" onclick="playStream()">播放</button>
+        </div>
+
+        <!-- 停止播放按钮 -->
+        <div class="control-section">
+            <h2>播放控制</h2>
+            <div class="button-group">
+                <button class="stop-btn" onclick="stopPlayback()">停止播放</button>
+            </div>
+        </div>
+
+        <!-- 音量控制 -->
+        <div class="control-section">
+            <h2>音量控制</h2>
+            <div class="button-group">
+                <button class="volume-btn" onclick="adjustVolume('up')">音量增加</button>
+                <button class="volume-btn" onclick="adjustVolume('down')">音量减小</button>
+                <input type="number" id="volumeInput" min="0" max="100" placeholder="音量值">
+                <button class="volume-btn" onclick="setVolume()">设置音量</button>
+            </div>
+        </div>
+
+        <div id="status"></div>
+
+        <!-- 公众号二维码 -->
+        <div class="qrcode-section">
+            <h2>扫一扫，关注EPOCH官方公众号</h2>
+            <a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=Mzg2MjAwNjcwNQ==&action=getalbum&album_id=1651568080709320706&scene=21" target="_blank" rel="noopener">
+                <img src="image/qrcode_for_gh_75032b7b381b_344-300x300.jpg" alt="EPOCH官方公众号">
+            </a>
+        </div>
+
+        <!-- 版权信息 -->
+        <div class="footer">
+            © 2024 <a href="http://www.epochaudio.cn/" target="_blank" rel="noopener">门耳朵制作</a>
+        </div>
+    </div>
+
+    <script>
+        function playQuickStream(url) {
+            document.getElementById('streamUrl').value = url;
+            playStream();
+        }
+
+        async function playStream() {
+            const streamUrl = document.getElementById('streamUrl').value;
+            const statusDiv = document.getElementById('status');
+            
+            if (!streamUrl) {
+                statusDiv.className = 'error';
+                statusDiv.textContent = '请输入有效的URL';
+                return;
+            }
+
+            try {
+                const response = await fetch('/play', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ url: streamUrl })
+                });
+
+                const result = await response.json();
+                
+                if (response.ok) {
+                    statusDiv.className = 'success';
+                    statusDiv.textContent = '开始播放流媒体';
+                } else {
+                    statusDiv.className = 'error';
+                    statusDiv.textContent = result.error || '播放失败';
+                }
+            } catch (error) {
+                statusDiv.className = 'error';
+                statusDiv.textContent = '连接服务器失败';
+            }
+        }
+
+        async function stopPlayback() {
+            const statusDiv = document.getElementById('status');
+            try {
+                const response = await fetch('/stop', {
+                    method: 'POST'
+                });
+                if (response.ok) {
+                    statusDiv.className = 'success';
+                    statusDiv.textContent = '已停止播放';
+                } else {
+                    statusDiv.className = 'error';
+                    statusDiv.textContent = '停止播放失败';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                statusDiv.className = 'error';
+                statusDiv.textContent = '操作失败';
+            }
+        }
+
+        async function adjustVolume(direction) {
+            const statusDiv = document.getElementById('status');
+            try {
+                const response = await fetch(`/volume/${direction}`, {
+                    method: 'POST'
+                });
+                if (response.ok) {
+                    statusDiv.className = 'success';
+                    statusDiv.textContent = `音量${direction === 'up' ? '增加' : '减小'}成功`;
+                } else {
+                    statusDiv.className = 'error';
+                    statusDiv.textContent = '调整音量失败';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                statusDiv.className = 'error';
+                statusDiv.textContent = '操作失败';
+            }
+        }
+
+        async function setVolume() {
+            const volume = document.getElementById('volumeInput').value;
+            const statusDiv = document.getElementById('status');
+            
+            if (volume === '' || isNaN(volume)) {
+                statusDiv.className = 'error';
+                statusDiv.textContent = '请输入有效的音量值';
+                return;
+            }
+            
+            try {
+                const response = await fetch('/volume', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ volume: parseInt(volume) })
+                });
+                if (response.ok) {
+                    statusDiv.className = 'success';
+                    statusDiv.textContent = '音量设置成功';
+                } else {
+                    statusDiv.className = 'error';
+                    statusDiv.textContent = '音量设置失败';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                statusDiv.className = 'error';
+                statusDiv.textContent = '操作失败';
+            }
+        }
+    </script>
+</body>
+</html> 
