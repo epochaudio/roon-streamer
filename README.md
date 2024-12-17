@@ -34,7 +34,8 @@ docker run -d roon-connect
   --network host \
   -e PORT=3012 \
   --restart unless-stopped \
-  epochaudio/roon-streamer:latest```
+  epochaudio/roon-streamer:latest
+```
 
 
 
