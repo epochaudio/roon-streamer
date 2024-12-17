@@ -29,7 +29,8 @@ docker run -d roon-connect
 
 或者：
 
-```docker run -d \
+```
+docker run -d \
   --name roon-streamer \
   --network host \
   -e PORT=3012 \
